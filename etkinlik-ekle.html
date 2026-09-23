@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kampüs Etkinlikleri - Etkinlik Ekle</title>
+</head>
+<body>
+    <header>
+        <h1>Etkinlik Ekle</h1>
+        <nav>
+            <a href="index.html">Ana Sayfa</a> |
+            <a href="etkinlikler.html">Etkinlikler</a> |
+            <a href="etkinlik-detay.html">Detay</a> |
+            <a href="etkinlik-ekle.html">Ekle</a> |
+            <a href="etkinlik-guncelle.html">Güncelle</a>
+        </nav>
+    </header>
+
+    <main>
+        <form>
+            <div>
+                <label for="etkinlik-adi">Etkinlik Adı:</label><br>
+                <input type="text" id="etkinlik-adi" name="etkinlik-adi" required>
+            </div>
+            <div>
+                <label for="kategori">Kategori:</label><br>
+                <select id="kategori" name="kategori" required>
+                    <option value="">Seçiniz</option>
+                    <option value="seminer">Seminer</option>
+                    <option value="atolye">Atölye</option>
+                </select>
+            </div>
+            <div>
+                <label for="tarih">Tarih / Saat:</label><br>
+                <input type="datetime-local" id="tarih" name="tarih" required>
+            </div>
+            <div>
+                <label for="yer">Yer:</label><br>
+                <input type="text" id="yer" name="yer" required>
+            </div>
+            <div>
+                <label for="aciklama">Açıklama:</label><br>
+                <textarea id="aciklama" name="aciklama" rows="4" required></textarea>
+            </div>
+            <div>
+                <button type="submit">Gönder</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Kampüs Etkinlikleri</p>
+    </footer>
+</body>
+</html>
