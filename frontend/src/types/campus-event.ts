@@ -12,3 +12,18 @@ export interface CampusEvent {
   description: string;
   image?: string; // afiş isteğe bağlı
 }
+
+// Formun tuttuğu veri: CampusEvent gibi ama id yok.
+// Input her zaman metin verir: kontenjan string, kategori seçilmemişse "".
+export interface EventFormData {
+  title: string;
+  category: Category | "";
+  capacity: string;
+  date: string;
+  time: string;
+  location: string;
+  description: string;
+}
+
+// Her alan için en fazla bir hata mesajı
+export type EventFormErrors = Partial<Record<keyof EventFormData, string>>;
