@@ -1,0 +1,12 @@
+# Bağımlılıklar ve derleme çıktıları
+node_modules/
+dist/
+
+# Ortam değişkenleri (gerçek değerler GitHub'a gitmez)
+.env
+
+# Editör / işletim sistemi dosyaları
+.vs/
+.vscode/
+.DS_Store
+Thumbs.db
