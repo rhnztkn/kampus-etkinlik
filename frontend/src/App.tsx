@@ -1,105 +1,51 @@
 import "./App.css";
-import { useEffect, useState } from "react";
-import type { Category } from "./types/campus-event";
-import type { PageName } from "./types/page";
-import { events } from "./data/events";
-import { filterByCategory, findEventById, searchEvents } from "./utils/filter-events";
+import { Route, Routes } from "react-router-dom";
+
 import Header from "./components/layout/Header";
 import Navigation from "./components/layout/Navigation";
 import Footer from "./components/layout/Footer";
-import EventList from "./components/events/EventList";
-import EventFilter from "./components/events/EventFilter";
-import EventDetail from "./components/events/EventDetail";
-import EventForm from "./components/forms/EventForm";
 
-// Başlık ve alt yazı: her sayfa için sabit metinler
-const pageTexts: Record<Exclude<PageName, "detail">, { title: string; text?: string }> = {
-  home: { title: "Kampüs Etkinlikleri", text: "Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin." },
-  events: { title: "Tüm Etkinlikler", text: "Bu dönem kampüste düzenlenen etkinlikler." },
-  add: { title: "Etkinlik Ekle" },
-  update: { title: "Etkinlik Güncelle" },
-};
+// Herkese açık sayfalar
+import HomePage from "./pages/HomePage";
+import EventsPage from "./pages/EventsPage";
+import EventDetailPage from "./pages/EventDetailPage";
+// Hesap sayfaları
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+// Yönetim sayfaları
+import AdminPage from "./pages/AdminPage";
+import AddEventPage from "./pages/AddEventPage";
+import EditEventPage from "./pages/EditEventPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
-function App() {
-  // State App'te kalır; bileşenler props ile okur, callback ile bildirir
-  const [page, setPage] = useState<PageName>("home");
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [searchText, setSearchText] = useState("");
-  const [category, setCategory] = useState<Category | "">("");
-
-  function go(next: PageName, id: string | null = null) {
-    setPage(next);
-    setSelectedId(id);
-    window.scrollTo(0, 0);
-  }
-
-  const upcoming = [...events].sort((a, b) => a.date.localeCompare(b.date)).slice(0, 2);
-  const categories = [...new Set(events.map((e) => e.category))];
-  const filtered = filterByCategory(searchEvents(events, searchText), category);
-  const selected = selectedId ? findEventById(events, selectedId) : undefined;
-
-  const { title, text } =
-    page === "detail" ? { title: selected?.title ?? "Etkinlik bulunamadı", text: undefined } : pageTexts[page];
-
-  useEffect(() => {
-    document.title = `Kampüs Etkinlikleri — ${title}`;
-  }, [title]);
-
-  const showDetail = (id: string) => go("detail", id);
-
+// Kabuk: üstte başlık + menü, ortada adrese göre sayfa, altta bilgi. State yok.
+export default function App() {
   return (
     <>
-      <Header title={title} text={text} />
-      <Navigation current={page} onNavigate={go} />
+      <Header />
+      <Navigation />
 
       <main>
-        {page === "home" && (
-          <>
-            <h2 className="bolum-baslik">Yaklaşan 2 Etkinlik</h2>
-            <EventList events={upcoming} onShowDetail={showDetail} />
-            <button type="button" onClick={() => go("events")}>
-              Tüm etkinlikleri gör
-            </button>
-          </>
-        )}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/events/:id" element={<EventDetailPage />} />
 
-        {page === "events" && (
-          <>
-            <EventFilter
-              searchText={searchText}
-              category={category}
-              categories={categories}
-              onSearchChange={setSearchText}
-              onCategoryChange={setCategory}
-            />
-            {filtered.length > 0 && <p className="sonuc">{filtered.length} etkinlik listeleniyor.</p>}
-            <EventList
-              events={filtered}
-              onShowDetail={showDetail}
-              emptyText="Aramanıza uygun etkinlik bulunamadı."
-            />
-          </>
-        )}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
-        {page === "detail" && !selected && (
-          <>
-            <p className="mesaj mesaj-hata">Böyle bir etkinlik yok. Listeden bir etkinlik seçin.</p>
-            <button type="button" onClick={() => go("events")}>
-              ← Listeye dön
-            </button>
-          </>
-        )}
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin/new" element={<AddEventPage />} />
+          <Route path="/admin/:id/edit" element={<EditEventPage />} />
 
-        {page === "detail" && selected && (
-          <EventDetail event={selected} onBack={() => go("events")} onEdit={(id) => go("update", id)} />
-        )}
-
-        {(page === "add" || page === "update") && <EventForm onSubmit={() => window.scrollTo(0, 0)} />}
+          {/* Yukarıdakilerin hiçbiri değilse */}
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
       </main>
 
       <Footer />
     </>
   );
 }
-
-export default App;

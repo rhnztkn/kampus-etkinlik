@@ -1,33 +1,29 @@
-import type { PageName } from "../../types/page";
+import { NavLink } from "react-router-dom";
 
-interface NavigationProps {
-  current: PageName;
-  onNavigate: (page: PageName) => void;
+interface MenuLink {
+  to: string;
+  label: string;
+  exact?: boolean; // sadece bu adreste aktif olsun
 }
 
-const menuItems: { name: PageName; label: string }[] = [
-  { name: "home", label: "Ana Sayfa" },
-  { name: "events", label: "Etkinlikler" },
-  { name: "add", label: "Ekle" },
+// "/" her adresin başında olduğu için exact (NavLink'te end) gerekir
+const MENU_LINKS: MenuLink[] = [
+  { to: "/", label: "Ana Sayfa", exact: true },
+  { to: "/events", label: "Etkinlikler" },
+  { to: "/admin", label: "Yönetim" },
+  { to: "/login", label: "Giriş" },
 ];
 
-// Veri aşağı (current), olay yukarı (onNavigate): sayfayı App değiştirir
-function Navigation({ current, onNavigate }: NavigationProps) {
+// NavLink açık sayfaya aria-current="page" ekler; CSS onu beyaz kutuyla gösterir
+function Navigation() {
   return (
     <nav className="menu" aria-label="Ana menü">
       <ul>
-        {menuItems.map((item) => (
-          <li key={item.name}>
-            <a
-              href="#"
-              aria-current={current === item.name ? "page" : undefined}
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate(item.name);
-              }}
-            >
-              {item.label}
-            </a>
+        {MENU_LINKS.map((link) => (
+          <li key={link.to}>
+            <NavLink to={link.to} end={link.exact}>
+              {link.label}
+            </NavLink>
           </li>
         ))}
       </ul>

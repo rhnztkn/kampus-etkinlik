@@ -3,12 +3,11 @@ import EventCard from "./EventCard";
 
 interface EventListProps {
   events: CampusEvent[];
-  onShowDetail: (id: string) => void;
   emptyText?: string;
 }
 
 // Dizi alır, her etkinlik için bir EventCard çizer; key burada, id'den
-function EventList({ events, onShowDetail, emptyText = "Henüz etkinlik yok." }: EventListProps) {
+function EventList({ events, emptyText = "Henüz etkinlik yok." }: EventListProps) {
   if (events.length === 0) {
     return <p className="sonuc">{emptyText}</p>;
   }
@@ -16,7 +15,7 @@ function EventList({ events, onShowDetail, emptyText = "Henüz etkinlik yok." }:
   return (
     <section className="etkinlik-listesi">
       {events.map((event) => (
-        <EventCard key={event.id} event={event} onShowDetail={onShowDetail} />
+        <EventCard key={event.id} event={event} />
       ))}
     </section>
   );

@@ -1,14 +1,12 @@
-interface HeaderProps {
-  title: string;
-  text?: string;
-}
+// Sprint 6'dan itibaren üst başlık sabit; sayfa adı main içindeki h2'de yazar
+const SITE_NAME = "Kampüs Etkinlikleri";
+const SLOGAN = "Seminer, atölye, söyleşi ve yarışmalar: fakültede olan her şey tek sayfada.";
 
-// Başlık dışarıdan gelir; alt yazı sadece verilmişse görünür
-function Header({ title, text }: HeaderProps) {
+function Header() {
   return (
     <header className="site-baslik">
-      <h1>{title}</h1>
-      {text && <p>{text}</p>}
+      <h1>{SITE_NAME}</h1>
+      <p>{SLOGAN}</p>
     </header>
   );
 }
