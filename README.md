@@ -26,3 +26,15 @@ Fakültedeki seminer, atölye, söyleşi ve yarışmaları tek yerden takip etme
 - Numaranın son hanesi **7** → `--font: "Palatino Linotype"`
 
 Etkinlikler `section > article` kartlarla listelenir; telefonda tek sütun, geniş ekranda birden fazla sütun.
+
+## Sprint 3 · JavaScript ve DOM
+
+`sprint3/` sayfaları Live Server ile açılmalıdır (`http://127.0.0.1:5500/sprint3/`); `type="module"` dosyadan çift tıklayınca çalışmaz.
+
+| Sayfa | Modül |
+|---|---|
+| `index.html`, `etkinlikler.html` | `js/event-list.js` |
+| `etkinlik-detay.html` | `js/event-detail.js` |
+| `etkinlik-ekle.html`, `etkinlik-guncelle.html` | `js/event-form.js` |
+
+`js/data.js` altı etkinliği tutar; diğer modüller onu `import` eder. Detay ve güncelleme sayfası adresteki `?id=event-3` gibi değeri okur.
