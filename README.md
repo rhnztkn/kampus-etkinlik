@@ -65,3 +65,16 @@ npm run build    # hatasız bitmeli
 | `public/` | Olduğu gibi kopyalanan dosyalar (afiş, ikon) |
 
 Vercel ayarı: **Root Directory** `frontend`, **Framework Preset** `Vite`.
+
+## Sprint 5 · React Bileşenleri
+
+Tek büyük `App.tsx` parçalara bölündü; her bileşen kendi dosyasında, props tipi `interface` ile yazılı:
+
+```
+src/components/
+  layout/  Header.tsx Navigation.tsx Footer.tsx
+  events/  EventCard.tsx EventList.tsx EventFilter.tsx EventDetail.tsx
+  forms/   EventForm.tsx
+```
+
+State (`page`, `selectedId`, `searchText`, `category`) App'te kalır; bileşenler veriyi props ile alır, olayları callback ile App'e bildirir.
