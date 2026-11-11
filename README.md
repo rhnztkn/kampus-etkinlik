@@ -38,3 +38,30 @@ Etkinlikler `section > article` kartlarla listelenir; telefonda tek sütun, geni
 | `etkinlik-ekle.html`, `etkinlik-guncelle.html` | `js/event-form.js` |
 
 `js/data.js` altı etkinliği tutar; diğer modüller onu `import` eder. Detay ve güncelleme sayfası adresteki `?id=event-3` gibi değeri okur.
+
+## Sprint 4 · Vite, TypeScript ve React
+
+Uygulama artık `frontend/` klasöründe bir Vite + React + TypeScript projesidir.
+
+```bash
+cd frontend
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # hatasız bitmeli
+```
+
+| Dosya | Görevi |
+|---|---|
+| `package.json` | Proje adı, `dev`/`build` komutları ve paket listesi |
+| `package-lock.json` | Yüklenen paketlerin tam sürümleri (`npm install` oluşturur) |
+| `node_modules/` | İndirilen paketler; GitHub'a gitmez |
+| `tsconfig*.json` | TypeScript derleyici ayarları |
+| `vite.config.ts` | Vite ayarları ve React eklentisi |
+| `index.html` | Tek HTML dosyası; içinde boş `div#root` |
+| `src/main.tsx` | React'i başlatır, `App`'i root'a çizer |
+| `src/App.tsx` | Uygulamanın ana bileşeni |
+| `src/App.css` | Uygulamanın stilleri (Sprint 3 CSS'i) |
+| `src/index.css` | Genel stil dosyası; bu sprintte boş |
+| `public/` | Olduğu gibi kopyalanan dosyalar (afiş, ikon) |
+
+Vercel ayarı: **Root Directory** `frontend`, **Framework Preset** `Vite`.
