@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tüm Etkinlikler · Kampüs Etkinlikleri</title>
+  <link rel="stylesheet" href="css/2416501017.css">
+  <script type="module" src="js/event-list.js"></script>
+</head>
+<body>
+  <header class="site-baslik">
+    <h1>Tüm Etkinlikler</h1>
+    <p>Bu dönem kampüste düzenlenen etkinlikler.</p>
+  </header>
+  <nav class="menu" aria-label="Ana menü">
+    <ul>
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="etkinlikler.html" aria-current="page">Etkinlikler</a></li>
+      <li><a href="etkinlik-ekle.html">Ekle</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <form id="filtre-formu" class="filtre" role="search">
+      <div class="alan">
+        <label for="arama">Etkinlik ara</label>
+        <input type="search" id="arama" placeholder="Örn. atölye, veri">
+      </div>
+      <div class="alan">
+        <label for="kategori-filtre">Kategori</label>
+        <select id="kategori-filtre">
+          <option value="">Tümü</option>
+        </select>
+      </div>
+    </form>
+    <p id="sonuc" class="sonuc" aria-live="polite"></p>
+
+    <!-- Kartlar event-list.js ile data.js'ten üretilir -->
+    <section id="etkinlik-listesi" class="etkinlik-listesi"></section>
+  </main>
+
+  <footer class="site-alt">
+    <p>Orhan Öztekin · 2416501017 · 2026</p>
+  </footer>
+</body>
+</html>
