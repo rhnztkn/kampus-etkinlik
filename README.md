@@ -109,3 +109,16 @@ Tarayıcıda `http://localhost:5173` açılır.
 | `*` | NotFoundPage |
 
 Etkinlik listesi ve ekle / güncelle / sil fonksiyonları `src/context/EventsContext.tsx` içinde tutulur; bütün sayfalar `useEvents()` ile aynı listeyi okur. Veri şimdilik tarayıcı belleğindedir; sayfa yenilenince başlangıç listesine döner.
+
+## Sprint 7 · Express ile REST API
+
+Aynı repoda ikinci uygulama: `backend/` (Node + Express, `http://localhost:3000`). Frontend bu sprintte değişmedi.
+
+```bash
+cd backend
+npm install
+cp .env.example .env    # Windows: copy .env.example .env
+npm run dev
+```
+
+Endpoint'ler, status code'lar ve REST sözleşmesi için: [`backend/README.md`](backend/README.md). Postman testleri: `backend/requests/kampus-api.json`.
