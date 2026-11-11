@@ -78,3 +78,34 @@ src/components/
 ```
 
 State (`page`, `selectedId`, `searchText`, `category`) App'te kalır; bileşenler veriyi props ile alır, olayları callback ile App'e bildirir.
+
+## Sprint 6 + Vize · Router, Context ve Yönetim
+
+**Canlı adres:** https://orhanoztekin-frontend.vercel.app
+
+### Kurulum
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Tarayıcıda `http://localhost:5173` açılır.
+
+### Route listesi
+
+| Adres | Sayfa |
+|---|---|
+| `/` | HomePage |
+| `/events` | EventsPage |
+| `/events/:id` | EventDetailPage |
+| `/login` | LoginPage |
+| `/register` | RegisterPage |
+| `/forgot-password` | ForgotPasswordPage |
+| `/admin` | AdminPage |
+| `/admin/new` | AddEventPage |
+| `/admin/:id/edit` | EditEventPage |
+| `*` | NotFoundPage |
+
+Etkinlik listesi ve ekle / güncelle / sil fonksiyonları `src/context/EventsContext.tsx` içinde tutulur; bütün sayfalar `useEvents()` ile aynı listeyi okur. Veri şimdilik tarayıcı belleğindedir; sayfa yenilenince başlangıç listesine döner.
