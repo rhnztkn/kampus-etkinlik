@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Etkinlik Ekle · Kampüs Etkinlikleri</title>
+  <link rel="stylesheet" href="css/2416501017.css">
+</head>
+<body>
+  <header class="site-baslik">
+    <h1>Etkinlik Ekle</h1>
+  </header>
+  <nav class="menu" aria-label="Ana menü">
+    <ul>
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="etkinlikler.html">Etkinlikler</a></li>
+      <li><a href="etkinlik-ekle.html">Ekle</a></li>
+      <li><a href="etkinlik-guncelle.html">Güncelle</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <form class="form" action="#" method="post">
+      <div class="alan">
+        <label for="ad">Etkinlik adı</label>
+        <input type="text" id="ad" name="ad" maxlength="80" required>
+      </div>
+
+      <div class="alan">
+        <label for="kategori">Kategori</label>
+        <select id="kategori" name="kategori" required>
+          <option value="">Seçiniz</option>
+          <option value="Seminer">Seminer</option>
+          <option value="Atölye">Atölye</option>
+          <option value="Söyleşi">Söyleşi</option>
+          <option value="Yarışma">Yarışma</option>
+        </select>
+      </div>
+
+      <div class="alan">
+        <label for="tarih">Tarih</label>
+        <input type="date" id="tarih" name="tarih" required>
+      </div>
+
+      <div class="alan">
+        <label for="aciklama">Açıklama</label>
+        <textarea id="aciklama" name="aciklama" rows="4"></textarea>
+      </div>
+
+      <button type="submit">Kaydet</button>
+    </form>
+  </main>
+
+  <footer class="site-alt">
+    <p>Orhan Öztekin · 2416501017 · 2026</p>
+  </footer>
+</body>
+</html>

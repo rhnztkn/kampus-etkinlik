@@ -17,3 +17,12 @@ Fakültedeki seminer, atölye, söyleşi ve yarışmaları tek yerden takip etme
 | `etkinlik-detay.html` | Tek etkinliğin afişi ve künyesi |
 | `etkinlik-ekle.html` | Yeni etkinlik formu |
 | `etkinlik-guncelle.html` | Değerleri dolu güncelleme formu |
+
+## Sprint 2 · CSS ve Responsive
+
+`sprint2/css/2416501017.css` dosyası beş sayfaya bağlıdır. Renk tonu ve font öğrenci numarasından gelir:
+
+- `--no: 2416501017` → `--ton: mod(2416501017, 360) = 297`
+- Numaranın son hanesi **7** → `--font: "Palatino Linotype"`
+
+Etkinlikler `section > article` kartlarla listelenir; telefonda tek sütun, geniş ekranda birden fazla sütun.
