@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <rect width="600" height="400" fill="#2b1236"/>
+  <circle cx="520" cy="70" r="140" fill="#7a2e8e" opacity="0.55"/>
+  <circle cx="90" cy="360" r="110" fill="#c04aa8" opacity="0.35"/>
+  <rect x="60" y="70" width="120" height="110" rx="12" fill="#f6e9f7"/>
+  <rect x="60" y="70" width="120" height="32" rx="12" fill="#c04aa8"/>
+  <rect x="60" y="90" width="120" height="12" fill="#c04aa8"/>
+  <text x="120" y="160" font-family="Georgia, serif" font-size="46" font-weight="bold" fill="#2b1236" text-anchor="middle">26</text>
+  <text x="210" y="115" font-family="Georgia, serif" font-size="38" fill="#ffffff">Kampüs</text>
+  <text x="210" y="160" font-family="Georgia, serif" font-size="38" fill="#ffffff">Etkinlikleri</text>
+  <line x1="60" y1="230" x2="540" y2="230" stroke="#f0b7e4" stroke-width="2"/>
+  <text x="60" y="275" font-family="Georgia, serif" font-size="22" fill="#f0b7e4">Seminer · Atölye · Söyleşi · Yarışma</text>
+  <text x="60" y="320" font-family="Georgia, serif" font-size="18" fill="#d9c4dd">2026 Güz Dönemi</text>
+</svg>
