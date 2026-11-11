@@ -1,124 +1,61 @@
-https://orhanoztekin-frontend.vercel.app
+# Kampüs Etkinlikleri API · Sprint 7
 
-# Kampüs Etkinlikleri
+Orhan Öztekin · 2416501017
 
-Fakültedeki seminer, atölye, söyleşi ve yarışmaları tek yerden takip etmek için hazırlanan web uygulaması.
+Aynı repoda iki uygulama var: `frontend/` (React + Vite, bu sprintte değişmedi) ve `backend/` (Node + Express, etkinlikleri JSON olarak veren sunucu). Veri şimdilik bellekte tutulur.
 
-**Öğrenci:** Orhan Öztekin · 2416501017
-
-## Sprint 1 · HTML
-
-`sprint1/` klasöründe yalnızca HTML ile yazılmış beş sayfa vardır (CSS ve JavaScript yok):
-
-| Dosya | İçerik |
-|---|---|
-| `index.html` | Ana sayfa, yaklaşan etkinlikler tablosu |
-| `etkinlikler.html` | Tüm etkinlikler tablosu |
-| `etkinlik-detay.html` | Tek etkinliğin afişi ve künyesi |
-| `etkinlik-ekle.html` | Yeni etkinlik formu |
-| `etkinlik-guncelle.html` | Değerleri dolu güncelleme formu |
-
-## Sprint 2 · CSS ve Responsive
-
-`sprint2/css/2416501017.css` dosyası beş sayfaya bağlıdır. Renk tonu ve font öğrenci numarasından gelir:
-
-- `--no: 2416501017` → `--ton: mod(2416501017, 360) = 297`
-- Numaranın son hanesi **7** → `--font: "Palatino Linotype"`
-
-Etkinlikler `section > article` kartlarla listelenir; telefonda tek sütun, geniş ekranda birden fazla sütun.
-
-## Sprint 3 · JavaScript ve DOM
-
-`sprint3/` sayfaları Live Server ile açılmalıdır (`http://127.0.0.1:5500/sprint3/`); `type="module"` dosyadan çift tıklayınca çalışmaz.
-
-| Sayfa | Modül |
-|---|---|
-| `index.html`, `etkinlikler.html` | `js/event-list.js` |
-| `etkinlik-detay.html` | `js/event-detail.js` |
-| `etkinlik-ekle.html`, `etkinlik-guncelle.html` | `js/event-form.js` |
-
-`js/data.js` altı etkinliği tutar; diğer modüller onu `import` eder. Detay ve güncelleme sayfası adresteki `?id=event-3` gibi değeri okur.
-
-## Sprint 4 · Vite, TypeScript ve React
-
-Uygulama artık `frontend/` klasöründe bir Vite + React + TypeScript projesidir.
-
-```bash
-cd frontend
-npm install
-npm run dev      # http://localhost:5173
-npm run build    # hatasız bitmeli
-```
-
-| Dosya | Görevi |
-|---|---|
-| `package.json` | Proje adı, `dev`/`build` komutları ve paket listesi |
-| `package-lock.json` | Yüklenen paketlerin tam sürümleri (`npm install` oluşturur) |
-| `node_modules/` | İndirilen paketler; GitHub'a gitmez |
-| `tsconfig*.json` | TypeScript derleyici ayarları |
-| `vite.config.ts` | Vite ayarları ve React eklentisi |
-| `index.html` | Tek HTML dosyası; içinde boş `div#root` |
-| `src/main.tsx` | React'i başlatır, `App`'i root'a çizer |
-| `src/App.tsx` | Uygulamanın ana bileşeni |
-| `src/App.css` | Uygulamanın stilleri (Sprint 3 CSS'i) |
-| `src/index.css` | Genel stil dosyası; bu sprintte boş |
-| `public/` | Olduğu gibi kopyalanan dosyalar (afiş, ikon) |
-
-Vercel ayarı: **Root Directory** `frontend`, **Framework Preset** `Vite`.
-
-## Sprint 5 · React Bileşenleri
-
-Tek büyük `App.tsx` parçalara bölündü; her bileşen kendi dosyasında, props tipi `interface` ile yazılı:
-
-```
-src/components/
-  layout/  Header.tsx Navigation.tsx Footer.tsx
-  events/  EventCard.tsx EventList.tsx EventFilter.tsx EventDetail.tsx
-  forms/   EventForm.tsx
-```
-
-State (`page`, `selectedId`, `searchText`, `category`) App'te kalır; bileşenler veriyi props ile alır, olayları callback ile App'e bildirir.
-
-## Sprint 6 + Vize · Router, Context ve Yönetim
-
-**Canlı adres:** https://orhanoztekin-frontend.vercel.app
-
-### Kurulum
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Tarayıcıda `http://localhost:5173` açılır.
-
-### Route listesi
-
-| Adres | Sayfa |
-|---|---|
-| `/` | HomePage |
-| `/events` | EventsPage |
-| `/events/:id` | EventDetailPage |
-| `/login` | LoginPage |
-| `/register` | RegisterPage |
-| `/forgot-password` | ForgotPasswordPage |
-| `/admin` | AdminPage |
-| `/admin/new` | AddEventPage |
-| `/admin/:id/edit` | EditEventPage |
-| `*` | NotFoundPage |
-
-Etkinlik listesi ve ekle / güncelle / sil fonksiyonları `src/context/EventsContext.tsx` içinde tutulur; bütün sayfalar `useEvents()` ile aynı listeyi okur. Veri şimdilik tarayıcı belleğindedir; sayfa yenilenince başlangıç listesine döner.
-
-## Sprint 7 · Express ile REST API
-
-Aynı repoda ikinci uygulama: `backend/` (Node + Express, `http://localhost:3000`). Frontend bu sprintte değişmedi.
+## Çalıştırma komutları
 
 ```bash
 cd backend
 npm install
-cp .env.example .env    # Windows: copy .env.example .env
 npm run dev
 ```
 
-Endpoint'ler, status code'lar ve REST sözleşmesi için: [`backend/README.md`](backend/README.md). Postman testleri: `backend/requests/kampus-api.json`.
+| Komut | Ne yapar |
+|---|---|
+| `npm install` | Paketleri yükler (express, dotenv, cors) |
+| `npm run dev` | `node --watch src/server.js` — dosya değişince sunucuyu yeniden başlatır |
+| `npm start` | `node src/server.js` |
+
+Sunucu `http://localhost:3000` adresinde açılır. Kontrol: `http://localhost:3000/health`
+
+## PORT değişkeni
+
+| Dosya | İçerik | GitHub |
+|---|---|---|
+| `backend/.env` | `PORT=3000` | Gitmez (`.gitignore`'da) |
+| `backend/.env.example` | `PORT=3000` | Gider |
+
+Port `process.env.PORT` ile okunur; `server.js`'in ilk satırı `import "dotenv/config"`. `.env` yoksa 3000 kullanılır.
+
+## REST sözleşmesi
+
+| Method | Endpoint | Amaç | Başarılı | Hata | Durum |
+|---|---|---|---|---|---|
+| GET | `/events` | Listeyi getir | 200 | — | Bu sprint |
+| GET | `/events/:id` | Tek etkinlik | 200 | 404 | Bu sprint |
+| POST | `/events` | Yeni etkinlik | 201 | 400 | Bu sprint |
+| PATCH | `/events/:id` | Güncelle | 200 | 400, 404 | Sprint 9 |
+| DELETE | `/events/:id` | Sil | 204 | 404 | Sprint 9 |
+
+**Status code'lar:** 200 tamam · 201 oluşturuldu · 204 içerik yok · 400 eksik/yanlış veri · 404 bulunamadı
+
+Bütün hatalar aynı biçimde döner:
+
+```json
+{ "error": { "message": "Event not found" } }
+```
+
+## Test
+
+Postman collection: `backend/requests/kampus-api.json`
+
+| # | İstek | Beklenen |
+|---|---|---|
+| 1 | GET /health | 200 · ok + student |
+| 2 | GET /events | 200 · 6 kayıt |
+| 3 | GET /events/event-2 | 200 · event-2 |
+| 4 | GET /events/yok | 404 · error |
+| 5 | POST /events (tam body) | 201 · yeni id |
+| 6 | POST /events (sadece title) | 400 · error |
