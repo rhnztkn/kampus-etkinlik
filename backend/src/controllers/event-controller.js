@@ -1,43 +1,43 @@
-import { events } from "../data/events.js";
+import mongoose from "mongoose";
+import { Event } from "../models/event-model.js";
 
 // GET /events  (?category=Atölye isteğe bağlı)
-export function getEvents(req, res) {
-  const { category } = req.query;
-  const list = category ? events.filter((e) => e.category === category) : events;
-  res.json(list);
+export async function getEvents(req, res, next) {
+  try {
+    const filter = req.query.category ? { category: req.query.category } : {};
+    const events = await Event.find(filter).sort({ date: 1 });
+    res.json(events);
+  } catch (err) {
+    next(err); // hata middleware'ine gider, sunucu çökmez
+  }
 }
 
 // GET /events/:id
-export function getEventById(req, res) {
-  const event = events.find((e) => e.id === req.params.id);
-  if (!event) {
-    // return: 404'ten sonra kod devam etmesin
-    return res.status(404).json({ error: { message: "Event not found" } });
+export async function getEventById(req, res, next) {
+  try {
+    // Biçimi yanlış id (ör. "yok") için CastError/500 yerine 404
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return res.status(404).json({ error: { message: "Event not found" } });
+    }
+    const event = await Event.findById(req.params.id);
+    if (!event) {
+      return res.status(404).json({ error: { message: "Event not found" } });
+    }
+    res.json(event);
+  } catch (err) {
+    next(err);
   }
-  res.json(event);
 }
 
-// POST /events  — body'den yeni kayıt; başarılıysa 201, eksikse 400
-export function createEvent(req, res) {
-  const { title, category, capacity, date, time, location, description } = req.body ?? {};
-
-  if (!title || !category || !date) {
-    return res
-      .status(400)
-      .json({ error: { message: "title, category and date are required" } });
+// POST /events — doğrulamayı schema yapar, controller 400'e çevirir
+export async function createEvent(req, res, next) {
+  try {
+    const event = await Event.create(req.body ?? {});
+    res.status(201).json(event);
+  } catch (err) {
+    if (err.name === "ValidationError") {
+      return res.status(400).json({ error: { message: err.message } });
+    }
+    next(err);
   }
-
-  const newEvent = {
-    id: `event-${Date.now()}`,
-    title,
-    category,
-    capacity: Number(capacity) || 0,
-    date,
-    time: time ?? "",
-    location: location ?? "",
-    description: description ?? "",
-  };
-
-  events.push(newEvent); // React değil, düz dizi: push burada sorun değil
-  res.status(201).json(newEvent);
 }
