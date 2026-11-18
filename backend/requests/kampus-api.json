@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "5b0f2c6e-7d1a-4c39-9e2a-2416501017aa",
     "name": "Kampüs API",
-    "description": "Kampüs Etkinlikleri REST API — Sprint 7 testleri (Orhan Öztekin · 2416501017). Adres hep http://localhost:3000 ile başlar.",
+    "description": "Kampüs Etkinlikleri REST API — Sprint 8 (MongoDB) testleri (Orhan Öztekin · 2416501017). Adres hep http://localhost:3000 ile başlar. 3. istekte {{eventId}} yerine GET /events listesinden kopyaladığın _id'yi yaz (Variables sekmesi).",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -14,9 +14,13 @@
         "url": {
           "raw": "http://localhost:3000/health",
           "protocol": "http",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "3000",
-          "path": ["health"]
+          "path": [
+            "health"
+          ]
         },
         "description": "Beklenen: 200 · status ok + student"
       },
@@ -30,11 +34,15 @@
         "url": {
           "raw": "http://localhost:3000/events",
           "protocol": "http",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "3000",
-          "path": ["events"]
+          "path": [
+            "events"
+          ]
         },
-        "description": "Beklenen: 200 · 6 kayıt"
+        "description": "Beklenen: 200 · 6 kayıt (seed sonrası), her kayıtta _id, createdAt, updatedAt"
       },
       "response": []
     },
@@ -44,13 +52,18 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/events/event-2",
+          "raw": "http://localhost:3000/events/{{eventId}}",
           "protocol": "http",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "3000",
-          "path": ["events", "event-2"]
+          "path": [
+            "events",
+            "{{eventId}}"
+          ]
         },
-        "description": "Beklenen: 200 · event-2"
+        "description": "Beklenen: 200 · listeden kopyalanan _id ile tek etkinlik"
       },
       "response": []
     },
@@ -62,11 +75,16 @@
         "url": {
           "raw": "http://localhost:3000/events/yok",
           "protocol": "http",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "3000",
-          "path": ["events", "yok"]
+          "path": [
+            "events",
+            "yok"
+          ]
         },
-        "description": "Beklenen: 404 · { error: { message: \"Event not found\" } }"
+        "description": "Beklenen: 404 · geçersiz id (500 değil) · { error: { message: \"Event not found\" } }"
       },
       "response": []
     },
@@ -92,11 +110,15 @@
         "url": {
           "raw": "http://localhost:3000/events",
           "protocol": "http",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "3000",
-          "path": ["events"]
+          "path": [
+            "events"
+          ]
         },
-        "description": "Beklenen: 201 · yeni id ile oluşan kayıt"
+        "description": "Beklenen: 201 · _id ve createdAt ile oluşan kayıt"
       },
       "response": []
     },
@@ -122,13 +144,24 @@
         "url": {
           "raw": "http://localhost:3000/events",
           "protocol": "http",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "3000",
-          "path": ["events"]
+          "path": [
+            "events"
+          ]
         },
-        "description": "Beklenen: 400 · { error: { message: \"title, category and date are required\" } }"
+        "description": "Beklenen: 400 · schema doğrulaması: date ve category zorunlu"
       },
       "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "eventId",
+      "value": "<listeden-bir-_id>",
+      "type": "string"
     }
   ]
 }
