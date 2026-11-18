@@ -25,4 +25,11 @@ app.use((req, res) => {
   res.status(404).json({ error: { message: "Route not found" } });
 });
 
+// Hata yakalayıcı: 4 parametre görünce Express bunu hata middleware'i sayar.
+// Kullanıcıya sadece "Server error" gider; ayrıntı terminalde kalır.
+app.use((err, req, res, next) => {
+  console.error(err.message);
+  res.status(500).json({ error: { message: "Server error" } });
+});
+
 export default app;
