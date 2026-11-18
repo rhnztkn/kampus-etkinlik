@@ -28,10 +28,6 @@ app.use((req, res) => {
 // Hata yakalayıcı: 4 parametre görünce Express bunu hata middleware'i sayar.
 // Kullanıcıya sadece "Server error" gider; ayrıntı terminalde kalır.
 app.use((err, req, res, next) => {
-  // Bozuk JSON gövde istemci hatasıdır: 500 değil 400
-  if (err.type === "entity.parse.failed") {
-    return res.status(400).json({ error: { message: "Invalid JSON body" } });
-  }
   console.error(err.message);
   res.status(500).json({ error: { message: "Server error" } });
 });
