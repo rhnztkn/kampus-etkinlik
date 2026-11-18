@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "5b0f2c6e-7d1a-4c39-9e2a-2416501017aa",
     "name": "Kampüs API",
-    "description": "Kampüs Etkinlikleri REST API — Sprint 8 (MongoDB) testleri (Orhan Öztekin · 2416501017). Adres hep http://localhost:3000 ile başlar. 3. istekte {{eventId}} yerine GET /events listesinden kopyaladığın _id'yi yaz (Variables sekmesi).",
+    "description": "Kampüs Etkinlikleri REST API — Sprint 8 (MongoDB) testleri (Orhan Öztekin · 2416501017). Adres hep http://localhost:3000 ile başlar. 3. istekteki _id, npm run seed sonrası GET /events listesinden kopyalandı.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -52,7 +52,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/events/{{eventId}}",
+          "raw": "http://localhost:3000/events/6afd4dc31588c7a8932dbb0e",
           "protocol": "http",
           "host": [
             "localhost"
@@ -60,7 +60,7 @@
           "port": "3000",
           "path": [
             "events",
-            "{{eventId}}"
+            "6afd4dc31588c7a8932dbb0e"
           ]
         },
         "description": "Beklenen: 200 · listeden kopyalanan _id ile tek etkinlik"
@@ -155,13 +155,6 @@
         "description": "Beklenen: 400 · schema doğrulaması: date ve category zorunlu"
       },
       "response": []
-    }
-  ],
-  "variable": [
-    {
-      "key": "eventId",
-      "value": "<listeden-bir-_id>",
-      "type": "string"
     }
   ]
 }

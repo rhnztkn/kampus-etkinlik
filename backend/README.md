@@ -64,6 +64,6 @@ Beklenmeyen hatalar `app.js` sonundaki hata middleware'ine gider; kullanıcıya 
 
 ## Test
 
-Postman collection: `requests/kampus-api.json` (3. istek için Variables → `eventId` değerine listeden bir `_id` yapıştır).
+Postman collection: `requests/kampus-api.json` (3. istekteki `_id` GET /events listesinden kopyalandı; seed tekrar çalışınca yeni listeden bir `_id` yazılır).
 
 Kalıcılık testi: `npm run seed` → `npm run dev` → POST /events (201) → Ctrl+C → `npm run dev` → GET /events: yeni kayıt hâlâ listede.

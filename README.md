@@ -74,13 +74,13 @@ Beklenmeyen hatalar hata middleware'ine gider; kullanıcıya sadece `"Server err
 
 ## Test
 
-Postman collection: `backend/requests/kampus-api.json`. 3. istek için koleksiyonun **Variables** sekmesinde `eventId` değerine GET /events listesinden bir `_id` yapıştır.
+Postman collection: `backend/requests/kampus-api.json`. 3. istekteki `_id` GET /events listesinden kopyalandı; seed tekrar çalışınca id'ler değişir, yeni listeden bir `_id` yazılır.
 
 | # | İstek | Beklenen |
 |---|---|---|
 | 1 | GET /health | 200 · ok + student |
 | 2 | GET /events | 200 · 6 kayıt (seed sonrası), `_id` + `createdAt` + `updatedAt` |
-| 3 | GET /events/{{eventId}} | 200 · tek etkinlik |
+| 3 | GET /events/<listeden bir _id> | 200 · tek etkinlik |
 | 4 | GET /events/yok | 404 · Event not found (500 değil) |
 | 5 | POST /events (tam body) | 201 · yeni `_id` + `createdAt` |
 | 6 | POST /events (sadece title) | 400 · date ve category zorunlu |
