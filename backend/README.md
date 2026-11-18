@@ -46,16 +46,24 @@ Etkinlikler MongoDB'de `kampus` veritabanının `events` collection'ında durur;
 
 | Method | Endpoint | Amaç | Başarılı | Hata | Durum |
 |---|---|---|---|---|---|
-| GET | `/events` | Listeyi getir | 200 | — | Bu sprint |
-| GET | `/events/:id` | Tek etkinlik | 200 | 404 | Bu sprint |
-| POST | `/events` | Yeni etkinlik | 201 | 400 | Bu sprint |
+| GET | `/events` | Listeyi getir (`?category=Atölye` isteğe bağlı) | 200 | — | Hazır |
+| GET | `/events/:id` | Tek etkinlik | 200 | 404 | Hazır |
+| POST | `/events` | Yeni etkinlik | 201 | 400 | Hazır |
 | PATCH | `/events/:id` | Güncelle | 200 | 400, 404 | Sprint 9 |
 | DELETE | `/events/:id` | Sil | 204 | 404 | Sprint 9 |
 
-**Status code'lar:** 200 tamam · 201 oluşturuldu · 204 içerik yok · 400 eksik/yanlış veri · 404 bulunamadı
+**Status code'lar:** 200 tamam · 201 oluşturuldu · 204 içerik yok · 400 eksik/yanlış veri (schema doğrulaması) · 404 bulunamadı (biçimi geçersiz id dahil) · 500 beklenmeyen sunucu hatası
 
 Bütün hatalar aynı biçimde döner:
 
 ```json
 { "error": { "message": "Event not found" } }
 ```
+
+Beklenmeyen hatalar `app.js` sonundaki hata middleware'ine gider; kullanıcıya sadece `"Server error"` döner, sunucu çökmez.
+
+## Test
+
+Postman collection: `requests/kampus-api.json` (3. istek için Variables → `eventId` değerine listeden bir `_id` yapıştır).
+
+Kalıcılık testi: `npm run seed` → `npm run dev` → POST /events (201) → Ctrl+C → `npm run dev` → GET /events: yeni kayıt hâlâ listede.
